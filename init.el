@@ -17,7 +17,7 @@
 (package-initialize)
 
 ;; Bootstrap `use-package'
-(unless (featurep 'use-package)
+(unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
@@ -44,7 +44,7 @@
 			 :ensure t
 			 :init (progn
 					 (setq ido-enable-flex-matching t)
-					 (define-key ido-file-dir-completion-map [(meta control ?b)] 'ido-goto-bookmark)
+;					 (define-key ido-file-dir-completion-map [(meta control ?b)] 'ido-goto-bookmark)
 					 (defadvice ido-find-file 
 					   (before auto-refresh-ido nil activate)
 					   (setq ido-rescan t))
@@ -64,8 +64,8 @@
 			 )
 (use-package rpm-spec-mode
 			 :ensure t
-			 :bind (("C-c C-l" 'specfile-insert-specfile-changelog-entry)
-					("C-c C-v" 'specfile-goto-version))
+			 :bind (("C-c C-l" . specfile-insert-specfile-changelog-entry)
+					("C-c C-v" . specfile-goto-version))
 			 :mode ("specfile.in" . rpm-spec-mode)
 			 )
 (use-package minimap
@@ -101,20 +101,20 @@
 			 :ensure t
 			 :init (recentf-mode 1)
 			 )
-(use-package python-mode
-			 :ensure t
-			 :mode (".in" python-mode)
-			 :config ((add-hook 'python-mode-hook
-								(lambda()
-								  (set (make-local-variable 'indent-tabs-mode) 'nil)
-								  (set (make-local-variable 'tab-width) 4)
-								  (local-set-key (kbd "H-m") 'my-list-methods)
-								  (local-set-key (kbd "H-i") 'my-jump-to-imports)
-								  (local-set-key (kbd "H-d") 'my-jump-to-doc-string)
-								  (local-set-key (kbd "H-t") 'my-python-set-test-id)
-								  (whitespace-mode 1)
-								  )))
-					  )
+;; (use-package python
+;; 			 :ensure t
+;; 			 :mode (".in" python-mode)
+;; 			 :config ((add-hook 'python-mode-hook
+;; 								(lambda()
+;; 								  (set (make-local-variable 'indent-tabs-mode) 'nil)
+;; 								  (set (make-local-variable 'tab-width) 4)
+;; 								  (local-set-key (kbd "H-m") 'my-list-methods)
+;; 								  (local-set-key (kbd "H-i") 'my-jump-to-imports)
+;; 								  (local-set-key (kbd "H-d") 'my-jump-to-doc-string)
+;; 								  (local-set-key (kbd "H-t") 'my-python-set-test-id)
+;; 								  (whitespace-mode 1)
+;; 								  )))
+;; 					  )
 (use-package elpy
 			 :ensure t
 			 :init (elpy-enable)
