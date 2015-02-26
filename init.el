@@ -44,7 +44,7 @@
 			 :ensure t
 			 :init (progn
 					 (setq ido-enable-flex-matching t)
-;					 (define-key ido-file-dir-completion-map [(meta control ?b)] 'ido-goto-bookmark)
+					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
 					 (defadvice ido-find-file 
 					   (before auto-refresh-ido nil activate)
 					   (setq ido-rescan t))
@@ -101,23 +101,21 @@
 			 :ensure t
 			 :init (recentf-mode 1)
 			 )
-;; (use-package python
-;; 			 :ensure t
-;; 			 :mode (".in" python-mode)
-;; 			 :config ((add-hook 'python-mode-hook
-;; 								(lambda()
-;; 								  (set (make-local-variable 'indent-tabs-mode) 'nil)
-;; 								  (set (make-local-variable 'tab-width) 4)
-;; 								  (local-set-key (kbd "H-m") 'my-list-methods)
-;; 								  (local-set-key (kbd "H-i") 'my-jump-to-imports)
-;; 								  (local-set-key (kbd "H-d") 'my-jump-to-doc-string)
-;; 								  (local-set-key (kbd "H-t") 'my-python-set-test-id)
-;; 								  (whitespace-mode 1)
-;; 								  )))
-;; 					  )
+
 (use-package elpy
 			 :ensure t
-			 :init (elpy-enable)
+			 :init (progn
+					 (elpy-enable)
+					 ;; this isn't right, it wants to be in python-mode-hook so it's buffer-local
+					 (whitespace-mode 1)
+					 )
+			 :mode (".in" python-mode)
+			 :bind (
+					("H-m" . my-list-methods)
+					("H-i" . my-jump-to-imports)
+					("H-d" . my-jump-to-doc-string)
+					("H-t" . my-python-set-test-id)
+					)
 			 )
 
 ;************************************************************
@@ -642,10 +640,10 @@ that is after the possible comment.  If at the end of line, move
 to the end of code.
 
 Example:
-  (serious |code here)1 ;; useless commend2
+  (serious |code here)1 ;; useless comment2
 
 In the example, | is the current point, 1 is the position of
-point after one invocation of this funciton, 2 is position after
+point after one invocation of this function, 2 is position after
 repeated invocation. On subsequent calls the point jumps between
 1 and 2.
 
@@ -680,7 +678,7 @@ properly."
 (defun open-file-at-cursor ()
   "Open the file path under cursor.
 If there is text selection, uses the text selection for path.
-If the path is starts with “http://”, open the URL in browser.
+If the path is starts with 'http:', open the URL in browser.
 Input path can be {relative, full path, URL}.
 This command is similar to `find-file-at-point' but without prompting for confirmation.
 "
@@ -690,12 +688,12 @@ This command is similar to `find-file-at-point' but without prompting for confir
                  (thing-at-point 'filename) ) ))
     (if (string-match-p "\\`https?://" path)
         (browse-url path)
-      (progn ; not starting “http://”
+      (progn ; not starting 'http:'
         (if (file-exists-p path)
             (find-file path)
           (if (file-exists-p (concat path ".el"))
               (find-file (concat path ".el"))
-            (when (y-or-n-p (format "file doesn't exist: 「%s」. Create?" path) )
+            (when (y-or-n-p (format "file doesn't exist: '%s'. Create?" path) )
               (find-file path )) ) ) ) ) ))
 
 
