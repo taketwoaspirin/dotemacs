@@ -23,6 +23,10 @@
 
 (require 'use-package)
 
+(use-package auto-package-update
+			 :ensure t
+			 :init (auto-package-update-maybe)
+			 )
 (use-package fixme-mode
 			 :ensure t
 			 )
@@ -44,11 +48,12 @@
 			 :ensure t
 			 :init (progn
 					 (setq ido-enable-flex-matching t)
-;					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
+					 (ido-mode t)
+					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
 					 (defadvice ido-find-file 
 					   (before auto-refresh-ido nil activate)
 					   (setq ido-rescan t))
-					 (ido-mode t))
+					 )
 			 )
 (use-package visual-regexp
 			 :ensure t
@@ -539,8 +544,6 @@
 
 (defun my-comment-line-dwim (&optional arg)
   (interactive)
-
-  
   (if (region-active-p)
 	  (comment-or-uncomment-region (region-beginning) (region-end))
 
