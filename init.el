@@ -44,7 +44,7 @@
 			 :ensure t
 			 :init (progn
 					 (setq ido-enable-flex-matching t)
-					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
+;					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
 					 (defadvice ido-find-file 
 					   (before auto-refresh-ido nil activate)
 					   (setq ido-rescan t))
@@ -109,7 +109,7 @@
 					 ;; this isn't right, it wants to be in python-mode-hook so it's buffer-local
 					 (whitespace-mode 1)
 					 )
-			 :mode (".in" python-mode)
+;			 :mode (".in" python-mode)
 			 :bind (
 					("H-m" . my-list-methods)
 					("H-i" . my-jump-to-imports)
@@ -418,6 +418,7 @@
   )
 
 
+; from http://emacswiki.org/emacs/InteractivelyDoThings
 (defun ido-goto-bookmark (bookmark)
   (interactive
    (list (bookmark-completing-read "Jump to bookmark"
