@@ -23,10 +23,12 @@
 
 (require 'use-package)
 
-(use-package auto-package-update
-			 :ensure t
-			 :init (auto-package-update-maybe)
-			 )
+(unless (version< emacs-version "24.4") 
+  (use-package auto-package-update
+	:ensure t
+	:init (auto-package-update-maybe)
+	)
+)
 (use-package fixme-mode
 			 :ensure t
 			 )
