@@ -34,96 +34,114 @@
 			 )
 (use-package tramp
 			 )
+(use-package misc
+  :bind ("M-z" . zap-up-to-char)
+  )
 (use-package grep
-			 :config (grep-compute-defaults)
-			 )
+  :config (grep-compute-defaults)
+  )
 (use-package dbus
 ; tweak for dbus suggested by http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-06/msg00629.html
-			 :config (dbus-register-signal
-					  :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
-					  "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
-			 )
+  :config (dbus-register-signal
+		   :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
+		   "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
+  )
 (use-package powerline
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package ido
-			 :ensure t
-			 :init (progn
-					 (setq ido-enable-flex-matching t)
-					 (ido-mode t)
-					 (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
-					 (defadvice ido-find-file 
-					   (before auto-refresh-ido nil activate)
-					   (setq ido-rescan t))
-					 )
-			 )
+  :ensure t
+  :init (progn
+		  (setq ido-enable-flex-matching t)
+		  (ido-mode t)
+		  (define-key ido-file-dir-completion-map (kbd "M-C-b") 'ido-goto-bookmark)
+		  (defadvice ido-find-file 
+			(before auto-refresh-ido nil activate)
+			(setq ido-rescan t))
+		  )
+  )
 (use-package visual-regexp
-			 :ensure t
-			 )
+  :ensure t
+  :bind (
+		 ("M-%" . vr/replace)
+		 ("M-C-%" . vr/query-replace)
+		 )
+  )
 (use-package visual-regexp-steroids
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package multiple-cursors
-			 :ensure t
-			 )
+  :ensure t
+  :bind (
+		 ("C-'" . mc/mark-all-like-this-dwim)
+		 ("M-'" . mc/mark-next-like-this)
+		 ("H-'" . mc/edit-lines)
+		 ("<mouse-9>" . mc/add-cursor-on-click)
+		 ("H-<mouse-1>" . mc/add-cursor-on-click)
+		 )
+  )
 (use-package expand-region
-			 :ensure t
-			 )
+  :ensure t
+  :bind (
+		 ("H-SPC" . er/expand-region)
+		 ("H-S-SPC" . er/contract-region)
+		 )
+  )
 (use-package rpm-spec-mode
-			 :ensure t
-			 :bind (("C-c C-l" . specfile-insert-specfile-changelog-entry)
-					("C-c C-v" . specfile-goto-version))
-			 :mode ("specfile.in" . rpm-spec-mode)
-			 )
+  :ensure t
+  :bind (("C-c C-l" . specfile-insert-specfile-changelog-entry)
+		 ("C-c C-v" . specfile-goto-version))
+  :mode ("specfile.in" . rpm-spec-mode)
+  )
 (use-package minimap
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package paren
-			 :ensure t
-			 :config (setq show-paren-style 'parenthesis)
-			 :init (show-paren-mode 1)
-			 )
+  :ensure t
+  :config (setq show-paren-style 'parenthesis)
+  :init (show-paren-mode 1)
+  )
 (use-package thingatpt
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package flymake
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package flymake-cursor
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package pos-tip
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package window-numbering
-			 :ensure t
-			 :init (window-numbering-mode 1)
-			 )
+  :ensure t
+  :init (window-numbering-mode 1)
+  )
 (use-package which-func
-			 :ensure t
-			 :config (setq which-func-modes t)
-			 :init (which-func-mode 1)
-			 )
+  :ensure t
+  :config (setq which-func-modes t)
+  :init (which-func-mode 1)
+  )
 (use-package recentf
-			 :ensure t
-			 :init (recentf-mode 1)
-			 )
+  :ensure t
+  :init (recentf-mode 1)
+  )
 
 (use-package elpy
-			 :ensure t
-			 :init (progn
-					 (elpy-enable)
-					 ;; this isn't right, it wants to be in python-mode-hook so it's buffer-local
-					 (whitespace-mode 1)
-					 )
-;			 :mode (".in" python-mode)
-			 :bind (
-					("H-m" . my-list-methods)
-					("H-i" . my-jump-to-imports)
-					("H-d" . my-jump-to-doc-string)
-					("H-t" . my-python-set-test-id)
-					)
-			 )
+  :ensure t
+  :init (progn
+		  (elpy-enable)
+		  ;; this isn't right, it wants to be in python-mode-hook so it's buffer-local
+		  (whitespace-mode 1)
+		  )
+  ;; :mode (".in" python-mode)
+  :bind (
+		 ("H-m" . my-list-methods)
+		 ("H-i" . my-jump-to-imports)
+		 ("H-d" . my-jump-to-doc-string)
+		 ("H-t" . my-python-set-test-id)
+		 )
+  )
 
 ;************************************************************
 ; Custom
@@ -196,7 +214,6 @@
 (setq enable-recursive-minibuffers t)
 
 (global-set-key "\M-)" 'match-paren)
-(global-set-key "\M-z" 'zap-up-to-char)
 (global-set-key "\M-s" 'isearch-forward-at-point)
 (global-set-key "\C-c\C-q" 'quote-word-at-point)
 (global-set-key "\C-xE" 'apply-macro-to-region-lines)
@@ -207,25 +224,16 @@
 (global-set-key (kbd "C-c r") 'my-revert-buffer-without-asking) 
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
 (global-set-key (kbd "M-]") 'next-error)
-(global-set-key (kbd "C-'") 'mc/mark-all-like-this-dwim)
-(global-set-key (kbd "M-'") 'mc/mark-next-like-this)
-(global-set-key (kbd "H-'") 'mc/edit-lines)
 (global-set-key (kbd "H-s") 'load-specfile)
 (global-set-key (kbd "H-b") 'load-makefile)
-(global-set-key (kbd "H-SPC") 'er/expand-region)
-(global-set-key (kbd "H-S-SPC") 'er/contract-region)
 (global-set-key (kbd "M-;") 'comment-dwim)
 (global-set-key (kbd "C-;") 'my-comment-line-dwim)
 (global-set-key (kbd "H-m") 'my-list-methods)
 (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
-(global-set-key (kbd "<mouse-9>") 'mc/add-cursor-on-click)
-(global-set-key (kbd "H-<mouse-1>") 'mc/add-cursor-on-click)
 (global-set-key (kbd "C-(") 'delete-pair)
 (global-set-key (kbd "M-[") 'square-bracket-region)
 (global-set-key (kbd "M-{") 'bracket-region)
 (global-set-key (kbd "M-\"") 'quote-word-at-point)
-(global-set-key (kbd "M-%") 'vr/replace)
-(global-set-key (kbd "M-C-%") 'vr/query-replace)
 (global-set-key (kbd "H-g") 'magit-status)
 (global-set-key (kbd "C-w")  
   '(lambda() (interactive) 
