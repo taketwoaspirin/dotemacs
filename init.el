@@ -210,7 +210,6 @@
 (global-set-key (kbd "C-'") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "M-'") 'mc/mark-next-like-this)
 (global-set-key (kbd "H-'") 'mc/edit-lines)
-(global-set-key (kbd "C-?") 'try-code)
 (global-set-key (kbd "H-s") 'load-specfile)
 (global-set-key (kbd "H-b") 'load-makefile)
 (global-set-key (kbd "H-SPC") 'er/expand-region)
