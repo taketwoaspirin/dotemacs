@@ -131,10 +131,10 @@
   :ensure t
   :init (progn
 		  (elpy-enable)
-		  ;; this isn't right, it wants to be in python-mode-hook so it's buffer-local
+		  ;; TODO this isn't right, it wants to be in python-mode-hook so it's buffer-local
 		  (whitespace-mode 1)
 		  )
-  ;; :mode (".in" python-mode)
+  :mode (".in" . python-mode)
   :bind (
 		 ("H-m" . my-list-methods)
 		 ("H-i" . my-jump-to-imports)
@@ -178,7 +178,7 @@
  '(sgml-basic-offset 4)
  '(tab-width 4)
  '(warning-suppress-types (quote ((undo discard-info))))
- '(whitespace-global-modes (quote (makefile-gmake-mode)))
+ '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
  '(whitespace-style (quote (face tabs space-before-tab)))
  '(window-combination-resize t)
  '(window-numbering-auto-assign-0-to-minibuffer t)
@@ -229,7 +229,7 @@
 (global-set-key (kbd "M-;") 'comment-dwim)
 (global-set-key (kbd "C-;") 'my-comment-line-dwim)
 (global-set-key (kbd "H-m") 'my-list-methods)
-(global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
+;; (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
 (global-set-key (kbd "C-(") 'delete-pair)
 (global-set-key (kbd "M-[") 'square-bracket-region)
 (global-set-key (kbd "M-{") 'bracket-region)
@@ -250,26 +250,6 @@
             (lambda ()
                   (interactive)
                   (join-line -1)))
-(global-set-key (kbd "C-s-n")
-                (lambda ()
-                  (interactive)
-                  (ignore-errors (next-line 5))))
-
-(global-set-key (kbd "C-s-p")
-                (lambda ()
-                  (interactive)
-                  (ignore-errors (previous-line 5))))
-
-(global-set-key (kbd "C-s-f")
-                (lambda ()
-                  (interactive)
-                  (ignore-errors (forward-char 5))))
-
-(global-set-key (kbd "C-s-b")
-                (lambda ()
-                  (interactive)
-                  (ignore-errors (backward-char 5))))
-
 (global-set-key (kbd "H-o") (lambda () (interactive)   (if (null minimap-bufname)
       (minimap-create)
     (minimap-kill))))
