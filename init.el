@@ -1,6 +1,18 @@
 ;; -*-Emacs-Lisp-*-
 
-; ************************************************************
+;; TODO
+;; Document external packages needed
+
+;; -- jsonlint --
+;; sudo apt-get install npm
+;; sudo nmp install jsonlint -g
+;; edit /usr/local/bin/jsonlint to point at a real nodejs interpreter
+
+;; -- jedi --
+
+
+
+;; ************************************************************
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -134,6 +146,11 @@
 )
 (use-package json-mode
   :ensure t
+)
+(use-package flymake-json
+  :ensure t
+  :init (add-hook 'json-mode-hook 'flymake-json-load)
+  :config (define-key json-mode-map "\M-]" 'flymake-goto-next-error)
 )
 (use-package elpy
   :ensure t
