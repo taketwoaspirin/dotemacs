@@ -126,7 +126,13 @@
   :ensure t
   :init (recentf-mode 1)
   )
-
+(use-package ag
+  :ensure t
+  :bind ("H-r" . ag))
+)
+(use-package json-mode
+  :ensure t
+)
 (use-package elpy
   :ensure t
   :init (progn
