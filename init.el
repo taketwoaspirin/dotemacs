@@ -3,6 +3,8 @@
 ; ************************************************************
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen t)
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ; Package archives
 
@@ -128,7 +130,7 @@
   )
 (use-package ag
   :ensure t
-  :bind ("H-r" . ag))
+  :bind ("H-r" . ag-project)
 )
 (use-package json-mode
   :ensure t
