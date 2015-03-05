@@ -140,6 +140,9 @@
   :ensure t
   :init (recentf-mode 1)
   )
+(use-package magit
+  :ensure t
+)
 (use-package ag
   :ensure t
   :bind ("H-r" . ag-project)
@@ -167,7 +170,9 @@
 		 ("H-t" . my-python-set-test-id)
 		 )
   )
-
+(use-package js3-mode
+  :ensure t
+)
 ;************************************************************
 ; Custom
 
