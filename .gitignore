@@ -5,3 +5,6 @@
 .cask
 *~
 elpa/
+.mc-lists.el
+bookmarks
+tramp

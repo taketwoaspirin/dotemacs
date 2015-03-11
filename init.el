@@ -114,6 +114,9 @@
   :ensure t
   :bind ("H-g" . magit-status)
   )
+(use-package gitignore-mode
+  :ensure t
+)
 (use-package paren
   :ensure t
   :config (setq show-paren-style 'parenthesis)
