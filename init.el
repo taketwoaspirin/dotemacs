@@ -24,9 +24,9 @@
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (add-to-list 'package-archives 
-			 '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (package-initialize)
 
@@ -39,15 +39,15 @@
 
 (unless (version< emacs-version "24.4") 
   (use-package auto-package-update
-	:ensure t
-	:init (auto-package-update-maybe)
-	)
+    :ensure t
+    :init (auto-package-update-maybe)
+    )
 )
 (use-package fixme-mode
-			 :ensure t
-			 )
+  :ensure t
+  )
 (use-package tramp
-			 )
+  )
 (use-package misc
   :bind ("M-z" . zap-up-to-char)
   )
@@ -55,7 +55,7 @@
   :config (grep-compute-defaults)
   )
 (use-package dbus
-; tweak for dbus suggested by http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-06/msg00629.html
+  ; tweak for dbus suggested by http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-06/msg00629.html
   :config (dbus-register-signal
 		   :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
 		   "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
@@ -90,7 +90,7 @@
 		 ("C-'" . mc/mark-all-like-this-dwim)
 		 ("M-'" . mc/mark-next-like-this)
 		 ("H-'" . mc/edit-lines)
-		 ("<mouse-9>" . mc/add-cursor-on-click)
+		 ("<mouse-8>" . mc/add-cursor-on-click)
 		 ("H-<mouse-1>" . mc/add-cursor-on-click)
 		 )
   )
@@ -109,6 +109,10 @@
   )
 (use-package minimap
   :ensure t
+  )
+(use-package magit
+  :ensure t
+  :bind ("H-g" . magit-status)
   )
 (use-package paren
   :ensure t
@@ -140,9 +144,6 @@
   :ensure t
   :init (recentf-mode 1)
   )
-(use-package magit
-  :ensure t
-)
 (use-package ag
   :ensure t
   :bind ("H-r" . ag-project)
@@ -264,7 +265,6 @@
 (global-set-key (kbd "M-[") 'square-bracket-region)
 (global-set-key (kbd "M-{") 'bracket-region)
 (global-set-key (kbd "M-\"") 'quote-word-at-point)
-(global-set-key (kbd "H-g") 'magit-status)
 (global-set-key (kbd "C-w")  
   '(lambda() (interactive) 
 	 (if mark-active
