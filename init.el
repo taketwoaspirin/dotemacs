@@ -48,6 +48,11 @@
   )
 (use-package tramp
   )
+(use-package smart-newline
+  :ensure t
+  :init (smart-newline-mode 1)
+  :bind ("C-o" . smart-newline)
+)
 (use-package misc
   :bind ("M-z" . zap-up-to-char)
   )
@@ -60,6 +65,15 @@
 		   :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
 		   "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
   )
+(use-package autopair
+  :ensure t
+  :init (autopair-global-mode)
+)
+;; (use-package form-feed
+;;   :ensure t
+;;   :config (add-hook 'python-mode-hook 'form-feed-mode)
+;; )
+
 (use-package powerline
   :ensure t
   )
@@ -74,6 +88,9 @@
 			(setq ido-rescan t))
 		  )
   )
+(use-package ido-ubiquitous
+  :ensure t
+)
 (use-package visual-regexp
   :ensure t
   :bind (
@@ -114,9 +131,36 @@
   :ensure t
   :bind ("H-g" . magit-status)
   )
+(use-package magit-filenotify
+  :ensure t
+)
+;; (use-package magit-tramp
+;;   :ensure t
+;; )
+;; (use-package magit-simple-keys
+;;   :ensure t
+;; )
+(use-package phi-rectangle
+  :ensure t
+  :bind ( 
+		 ("C-w" . phi-rectangle-kill-region)
+		 ("M-w" . phi-rectangle-kill-ring-save)
+		 ("C-y" . phi-rectangle-yank)
+		 ("C-S-SPC" . phi-rectangle-set-mark-command)
+		 )
+)		  
+(use-package gitconfig-mode
+  :ensure t
+)
 (use-package gitignore-mode
   :ensure t
 )
+(use-package ssh-config-mode
+  :ensure t
+  )
+(use-package web-mode
+  :ensure t
+  )
 (use-package paren
   :ensure t
   :config (setq show-paren-style 'parenthesis)
@@ -200,6 +244,7 @@
  '(help-at-pt-timer-delay 0.9)
  '(ido-default-buffer-method (quote selected-window))
  '(ido-max-directory-size 90000)
+ '(ido-ubiquitous-mode t)
  '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
@@ -268,17 +313,6 @@
 (global-set-key (kbd "M-[") 'square-bracket-region)
 (global-set-key (kbd "M-{") 'bracket-region)
 (global-set-key (kbd "M-\"") 'quote-word-at-point)
-(global-set-key (kbd "C-w")  
-  '(lambda() (interactive) 
-	 (if mark-active
-		 (kill-region (region-beginning) (region-end))
-	   (kill-region (line-beginning-position) (line-beginning-position 2)))))
-
-(global-set-key (kbd "M-w")  
-  '(lambda() (interactive) 
-	 (if mark-active 
-		 (kill-ring-save (region-beginning) (region-end))
-	   (kill-ring-save (line-beginning-position) (line-beginning-position 2)))))
 (global-set-key (kbd "M-j")
             (lambda ()
                   (interactive)
@@ -288,8 +322,6 @@
     (minimap-kill))))
 
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
-(global-set-key [(shift return)] 'smart-open-line)
-(global-set-key (kbd "C-o") 'smart-open-line)
 (global-set-key (kbd "H-u") 'my-underline-line)
 (windmove-default-keybindings 'hyper)
 (global-set-key [remap move-beginning-of-line]
@@ -581,23 +613,6 @@
 		(move-end-of-line 1))
 	)
 )
-
-(defun smart-open-line ()
-  "Insert an empty line after the current line.
-Position the cursor at its beginning, according to the current mode."
-  (interactive)
-  (if (bolp)
-	  (open-line 1)
-	(let ((p (point)))
-	  (back-to-indentation)
-	  (if (<= p (point))
-		  (progn (save-excursion
-				   (back-to-indentation)
-				   (open-line 1)
-				   (forward-line 1)
-				   (indent-for-tab-command)))
-		(move-end-of-line nil)
-		(newline-and-indent)))))
 
 (defun recentf-ido-find-file ()
   "Find a recent file using ido."
