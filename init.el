@@ -131,9 +131,9 @@
   :ensure t
   :bind ("H-g" . magit-status)
   )
-(use-package magit-filenotify
-  :ensure t
-)
+;; (use-package magit-filenotify
+;;   :ensure t
+;; )
 ;; (use-package magit-tramp
 ;;   :ensure t
 ;; )
