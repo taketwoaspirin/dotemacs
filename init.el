@@ -220,6 +220,18 @@
   )
 (use-package js3-mode
   :ensure t
+  )
+(use-package semantic
+  :ensure t
+  :init (progn
+		 (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+		 ;; (global-semanticdb-minor-mode 1)
+		 ;; (global-semantic-idle-scheduler-mode 1)
+		 (semantic-mode 1)
+		 )
+  )
+(use-package stickyfunc-enhance
+  :ensure t
 )
 ;************************************************************
 ; Custom
