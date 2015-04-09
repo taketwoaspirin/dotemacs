@@ -178,10 +178,10 @@
 (use-package pos-tip
   :ensure t
   )
-(use-package window-numbering
-  :ensure t
-  :init (window-numbering-mode 1)
-  )
+;; (use-package window-numbering
+;;   :ensure t
+;;   :init (window-numbering-mode 1)
+;;   )
 (use-package which-func
   :ensure t
   :config (setq which-func-modes t)
