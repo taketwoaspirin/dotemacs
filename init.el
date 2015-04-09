@@ -201,7 +201,7 @@
 (use-package flymake-json
   :ensure t
   :init (add-hook 'json-mode-hook 'flymake-json-load)
-  :config (define-key json-mode-map "\M-]" 'flymake-goto-next-error)
+  :config (define-key json-mode-map "\C-c\C-n" 'flymake-goto-next-error)
 )
 (use-package elpy
   :ensure t
