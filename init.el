@@ -203,6 +203,10 @@
   :init (add-hook 'json-mode-hook 'flymake-json-load)
   :config (define-key json-mode-map "\C-c\C-n" 'flymake-goto-next-error)
 )
+(use-package ws-trim
+  :ensure t
+  :init (global-ws-trim-mode 1)
+  )
 (use-package elpy
   :ensure t
   :init (progn
