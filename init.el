@@ -261,6 +261,7 @@
  '(ido-default-buffer-method (quote selected-window))
  '(ido-max-directory-size 90000)
  '(ido-ubiquitous-mode t)
+ '(indent-tabs-mode nil)
  '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
