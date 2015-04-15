@@ -169,10 +169,10 @@
 (use-package thingatpt
   :ensure t
   )
-(use-package flymake
+(use-package flycheck
   :ensure t
   )
-(use-package flymake-cursor
+(use-package flycheck-pos-tip
   :ensure t
   )
 (use-package pos-tip
