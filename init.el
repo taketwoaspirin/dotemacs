@@ -148,13 +148,13 @@
 		 ("C-y" . phi-rectangle-yank)
 		 ("C-S-SPC" . phi-rectangle-set-mark-command)
 		 )
-)		  
+  )
 (use-package gitconfig-mode
   :ensure t
-)
+  )
 (use-package gitignore-mode
   :ensure t
-)
+  )
 (use-package ssh-config-mode
   :ensure t
   )
