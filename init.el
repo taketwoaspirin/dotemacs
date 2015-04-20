@@ -140,6 +140,12 @@
 ;; (use-package magit-simple-keys
 ;;   :ensure t
 ;; )
+(use-package git-timemachine
+  :ensure t
+  :bind (
+         ("C-s-t" . git-timemachine)
+         )
+  )
 (use-package phi-rectangle
   :ensure t
   :bind ( 
