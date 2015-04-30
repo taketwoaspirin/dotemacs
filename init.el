@@ -51,6 +51,7 @@
 (use-package smart-newline
   :ensure t
   :init (smart-newline-mode 1)
+  ;; TODO This doesn't work quite how I'd like it to in Python
   :bind ("C-o" . smart-newline)
 )
 (use-package misc
@@ -840,10 +841,18 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   (save-excursion
 	(save-restriction
 	  (narrow-to-defun)
-	  (goto-char 1)
-	  (let ((current-defun (python-info-current-defun)))
+      (let ((current-class (first (split-string (python-info-current-defun) "\\."))))
+      (my-jump-to-doc-string)
+      (forward-char 1)
+      (back-to-indentation)
+      (if (looking-at current-class)
+          (kill-whole-line))
+      (indent-for-tab-command)
+      (insert (python-info-current-defun) "\n")
+      (indent-for-tab-command)
 
-	  (if (search-forward "self.err_test_id = " nil t)
+      (goto-char 1)
+      (if (search-forward "self.err_test_id = " nil t)
 		  (progn
 			(kill-whole-line)
 			(insert-python-current-defun)
