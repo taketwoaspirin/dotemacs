@@ -51,8 +51,6 @@
 (use-package smart-newline
   :ensure t
   :init (smart-newline-mode 1)
-  ;; TODO This doesn't work quite how I'd like it to in Python
-  :bind ("C-o" . smart-newline)
 )
 (use-package misc
   :bind ("M-z" . zap-up-to-char)
@@ -66,10 +64,10 @@
 		   :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
 		   "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
   )
-(use-package autopair
-  :ensure t
-  :init (autopair-global-mode)
-)
+;; (use-package autopair
+;;   :ensure t
+;;   :init (autopair-global-mode)
+;; )
 ;; (use-package form-feed
 ;;   :ensure t
 ;;   :config (add-hook 'python-mode-hook 'form-feed-mode)
@@ -168,11 +166,11 @@
 (use-package web-mode
   :ensure t
   )
-(use-package paren
-  :ensure t
-  :config (setq show-paren-style 'parenthesis)
-  :init (show-paren-mode 1)
-  )
+;; (use-package paren
+;;   :ensure t
+;;   :config (setq show-paren-style 'parenthesis)
+;;   :init (show-paren-mode 1)
+;;   )
 (use-package thingatpt
   :ensure t
   )
@@ -202,6 +200,10 @@
   :ensure t
   :bind ("H-r" . ag-project)
 )
+(use-package wgrep-ag
+  :ensure t
+  :config (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+  )
 (use-package json-mode
   :ensure t
 )
@@ -244,6 +246,23 @@
 (use-package stickyfunc-enhance
   :ensure t
 )
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-strict-mode 1))
+  :bind (
+         ("C-9" . sp-backward-slurp-sexp)
+         ("C-0" . sp-forward-slurp-sexp)
+         ("C-M-9" . sp-beginning-of-sexp)
+         ("C-M-0" . sp-end-of-sexp)
+         ("C-(" . sp-backward-barf-sexp)
+         ("C-)" . sp-forward-barf-sexp)
+         )
+  )
+
 ;************************************************************
 ; Custom
 
@@ -279,6 +298,8 @@
  '(semantic-idle-scheduler-idle-time 0.25)
  '(semanticdb-default-save-directory "~/.emacs-semanticdb")
  '(sgml-basic-offset 4)
+ '(show-smartparens-global-mode t)
+ '(sp-show-pair-from-inside t)
  '(tab-width 4)
  '(warning-suppress-types (quote ((undo discard-info))))
  '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
@@ -869,3 +890,17 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 	))))
 )
 
+(put 'narrow-to-region 'disabled nil)
+
+(defun my-smart-open-line ()
+  ""
+  (interactive)
+  (if (looking-back "^[[:blank:]]*")
+      (progn
+        (message "looking at whitespace")
+        (beginning-of-line)
+        (open-line 1)
+        (indent-for-tab-command))
+    (open-line 1)
+    )
+  )
