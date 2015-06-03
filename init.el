@@ -5,10 +5,11 @@
 
 ;; -- jsonlint --
 ;; sudo apt-get install npm
-;; sudo nmp install jsonlint -g
+;; sudo npm install jsonlint -g
 ;; edit /usr/local/bin/jsonlint to point at a real nodejs interpreter
 
 ;; -- jedi --
+;; pip install --user jedi
 
 
 
