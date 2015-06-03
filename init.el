@@ -225,8 +225,7 @@
 		  )
   :mode (".in" . python-mode)
   :bind (
-		 ("H-m" . my-list-methods)
-		 ("H-i" . my-jump-to-imports)
+         ("H-i" . my-jump-to-imports)
 		 ("H-d" . my-jump-to-doc-string)
 		 ("H-t" . my-python-set-test-id)
 		 )
@@ -352,7 +351,6 @@
 (global-set-key (kbd "H-b") 'load-makefile)
 (global-set-key (kbd "M-;") 'comment-dwim)
 (global-set-key (kbd "C-;") 'my-comment-line-dwim)
-(global-set-key (kbd "H-m") 'my-list-methods)
 ;; (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
 (global-set-key (kbd "C-(") 'delete-pair)
 (global-set-key (kbd "M-[") 'square-bracket-region)
