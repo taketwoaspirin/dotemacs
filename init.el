@@ -49,6 +49,10 @@
   )
 (use-package tramp
   )
+(use-package undo-tree
+  :ensure t
+  :init (global-undo-tree-mode)
+  )
 (use-package smart-newline
   :ensure t
   :init (smart-newline-mode 1)
@@ -216,6 +220,10 @@
 (use-package ws-trim
   :ensure t
   :init (global-ws-trim-mode 1)
+  )
+(use-package shrink-whitespace
+  :ensure t
+  :bind ("M-SPC" . shrink-whitespace)
   )
 (use-package elpy
   :ensure t
