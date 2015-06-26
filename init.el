@@ -632,12 +632,18 @@
   (forward-line 1)
   (back-to-indentation)
   (if (looking-at "\"\"\"")
-	  (forward-char 3)
-	(insert "\"\"\" \"\"\"\n")
+      (progn
+        (forward-char 4)
+        (back-to-indentation)
+        )
+    (indent-for-tab-command)
+    (insert "\"\"\"\n\n")
+    (indent-for-tab-command)
+    (insert "\"\"\"\n")
 	(indent-for-tab-command)
-	(forward-line -1)
+    (forward-line -2)
 	(back-to-indentation)
-	(forward-char 3)))
+    (indent-for-tab-command)))
 
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
