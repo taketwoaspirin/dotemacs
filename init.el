@@ -9,7 +9,8 @@
 ;; edit /usr/local/bin/jsonlint to point at a real nodejs interpreter
 
 ;; -- jedi --
-;; pip install --user jedi
+;; sudo apt-get install python3-pip
+;; pip3 install --user jedi
 
 
 
@@ -301,6 +302,7 @@
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
  '(python-fill-docstring-style (quote django))
+ '(python-shell-interpreter "python3")
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(semantic-complete-inline-analyzer-displayor-class (quote semantic-displayor-ghost))
  '(semantic-idle-scheduler-idle-time 0.25)
