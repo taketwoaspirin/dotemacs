@@ -136,6 +136,10 @@
   :ensure t
   :bind ("H-g" . magit-status)
   )
+;; (use-package magit-gh-pulls
+;;   :ensure t
+;;   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+;; )
 ;; (use-package magit-filenotify
 ;;   :ensure t
 ;; )
@@ -151,6 +155,9 @@
          ("C-s-t" . git-timemachine)
          )
   )
+;; (use-package git-lens
+;;   :ensure t
+;;   )
 (use-package phi-rectangle
   :ensure t
   :bind ( 
