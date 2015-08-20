@@ -381,6 +381,7 @@
 (global-set-key (kbd "H-b") 'load-makefile)
 (global-set-key (kbd "M-;") 'comment-dwim)
 (global-set-key (kbd "C-;") 'my-comment-line-dwim)
+(global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
 ;; (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
 (global-set-key (kbd "C-(") 'delete-pair)
 (global-set-key (kbd "M-[") 'square-bracket-region)
@@ -691,6 +692,12 @@
 	(if (comment-only-p (point) (line-end-position))
 		(move-end-of-line 1))
 	)
+)
+
+(defun my-comment-line-dwim-next-line (&optional arg)
+  (interactive)
+  (my-comment-line-dwim arg)
+  (forward-line 1)
 )
 
 (defun recentf-ido-find-file ()
