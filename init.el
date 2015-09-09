@@ -4,7 +4,7 @@
 ;; Document external packages needed
 
 ;; -- jsonlint --
-;; sudo apt-get install npm
+;; sudo apt-get install npm nodejs
 ;; sudo npm install jsonlint -g
 ;; edit /usr/local/bin/jsonlint to point at a real nodejs interpreter
 
