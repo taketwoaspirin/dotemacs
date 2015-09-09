@@ -274,22 +274,6 @@
 (use-package stickyfunc-enhance
   :ensure t
 )
-(use-package smartparens
-  :ensure t
-  :diminish smartparens-mode
-  :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-strict-mode 1))
-  :bind (
-         ("C-9" . sp-backward-slurp-sexp)
-         ("C-0" . sp-forward-slurp-sexp)
-         ("C-M-9" . sp-beginning-of-sexp)
-         ("C-M-0" . sp-end-of-sexp)
-         ("C-(" . sp-backward-barf-sexp)
-         ("C-)" . sp-forward-barf-sexp)
-         )
-  )
 
 ;************************************************************
 ; Custom
