@@ -110,9 +110,8 @@
   :ensure t
   :bind (
 		 ("C-'" . mc/mark-all-like-this-dwim)
-		 ("M-'" . mc/mark-next-like-this)
-		 ("H-'" . mc/edit-lines)
-		 ("<mouse-8>" . mc/add-cursor-on-click)
+         ("M-'" . mc/edit-lines)
+         ("<mouse-8>" . mc/add-cursor-on-click)
 		 ("H-<mouse-1>" . mc/add-cursor-on-click)
 		 )
   )
@@ -120,8 +119,15 @@
   :ensure t
   :bind (
 		 ("H-SPC" . er/expand-region)
-		 ("H-S-SPC" . er/contract-region)
-		 )
+         ("H-S-SPC" . er/contract-region)
+         ("H-9" . er/mark-inside-pairs)
+         ("H-(" . er/mark-inside-pairs)
+         ("H-0" . er/mark-outside-pairs)
+         ("H-)" . er/mark-outside-pairs)
+         ("H-'" . er/mark-inside-quotes)
+         ("C-M-'" . er/mark-outside-quotes)
+
+         )
   )
 (use-package rpm-spec-mode
   :ensure t
