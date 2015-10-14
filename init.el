@@ -162,15 +162,6 @@
 ;; (use-package git-lens
 ;;   :ensure t
 ;;   )
-(use-package phi-rectangle
-  :ensure t
-  :bind ( 
-		 ("C-w" . phi-rectangle-kill-region)
-		 ("M-w" . phi-rectangle-kill-ring-save)
-		 ("C-y" . phi-rectangle-yank)
-		 ("C-S-SPC" . phi-rectangle-set-mark-command)
-		 )
-  )
 (use-package gitconfig-mode
   :ensure t
   )
@@ -183,6 +174,19 @@
 (use-package web-mode
   :ensure t
   )
+(use-package phi-rectangle
+  :ensure t
+  :bind (
+		 ;; ("C-w" . phi-rectangle-kill-region)
+		 ;; ("M-w" . phi-rectangle-kill-ring-save)
+		 ;; ("C-y" . phi-rectangle-yank)
+		 ("C-S-SPC" . phi-rectangle-set-mark-command)
+		 )
+  )
+(use-package whole-line-or-region
+  :ensure t
+  :init (whole-line-or-region-mode 1)
+)
 ;; (use-package paren
 ;;   :ensure t
 ;;   :config (setq show-paren-style 'parenthesis)
@@ -263,6 +267,10 @@
 		 ("H-t" . my-python-set-test-id)
 		 )
   )
+(use-package py-smart-operator
+  :ensure t
+  :init (add-hook 'python-mode-hook 'py-smart-operator-mode)
+)
 (use-package js3-mode
   :ensure t
   )
