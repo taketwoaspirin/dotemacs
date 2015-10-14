@@ -156,7 +156,7 @@
 (use-package git-timemachine
   :ensure t
   :bind (
-         ("C-s-t" . git-timemachine)
+         ("C-H-G" . git-timemachine)
          )
   )
 ;; (use-package git-lens
