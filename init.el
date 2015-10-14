@@ -15,6 +15,17 @@
 
 
 ;; ************************************************************
+;; startup speedup tricks
+(let ((file-name-handler-alist nil))
+(setf gc-cons-threshold 100000000)
+(run-with-idle-timer
+ 5 nil
+ (lambda ()
+   (setq gc-cons-threshold 1000000)
+   (message "gc-cons-threshold restored to %S"
+            gc-cons-threshold)))
+;;
+
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -941,3 +952,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
     (open-line 1)
     )
   )
+
+;; End let from the top
+)
