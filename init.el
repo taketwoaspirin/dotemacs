@@ -81,18 +81,7 @@
 		   :system "org.freedesktop.UPower" "/org/freedesktop/UPower"
 		   "org.freedesktop.UPower" "Resuming" 'tramp-cleanup-all-connections)
   )
-;; (use-package autopair
-;;   :ensure t
-;;   :init (autopair-global-mode)
-;; )
-;; (use-package form-feed
-;;   :ensure t
-;;   :config (add-hook 'python-mode-hook 'form-feed-mode)
-;; )
 
-(use-package powerline
-  :ensure t
-  )
 (use-package ido
   :ensure t
   :init (progn
