@@ -283,58 +283,6 @@
   :ensure t
 )
 
-;************************************************************
-; Custom
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-save-list-file-prefix "~/.emacs.d-local/auto-save-list/.saves-")
- '(c-basic-offset 4)
- '(c-tab-always-indent t)
- '(case-fold-search t)
- '(cc-search-directories (quote ("." "/usr/include" "/usr/local/include/*" "../*")))
- '(clean-buffer-list-delay-general 7)
- '(cperl-continued-statement-offset 0)
- '(current-language-environment "UTF-8")
- '(default-input-method "rfc1345")
- '(elpy-test-runner (quote elpy-test-nose-runner))
- '(global-font-lock-mode t nil (font-lock))
- '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
- '(help-at-pt-timer-delay 0.9)
- '(ido-default-buffer-method (quote selected-window))
- '(ido-max-directory-size 90000)
- '(ido-ubiquitous-mode t)
- '(indent-tabs-mode nil)
- '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
- '(mf-display-padding-height 75)
- '(mouse-wheel-follow-mouse t)
- '(mouse-wheel-mode t nil (mwheel))
- '(python-fill-docstring-style (quote django))
- '(python-shell-interpreter "python3")
- '(safe-local-variable-values (quote ((encoding . utf-8))))
- '(semantic-complete-inline-analyzer-displayor-class (quote semantic-displayor-ghost))
- '(semantic-idle-scheduler-idle-time 0.25)
- '(semanticdb-default-save-directory "~/.emacs-semanticdb")
- '(sgml-basic-offset 4)
- '(show-smartparens-global-mode t)
- '(sp-show-pair-from-inside t)
- '(tab-width 4)
- '(warning-suppress-types (quote ((undo discard-info))))
- '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
- '(whitespace-style (quote (face tabs space-before-tab)))
- '(window-combination-resize t)
- '(window-numbering-auto-assign-0-to-minibuffer t)
- '(x-select-enable-clipboard t))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Inconsolata")))))
 
 (setq visible-bell t)
 (setq-default truncate-lines t)
@@ -940,3 +888,57 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 ;; End let from the top
 )
+
+;************************************************************
+; Custom, below the let since Custom doesn't know how to deal with that.
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-list-file-prefix "~/.emacs.d-local/auto-save-list/.saves-")
+ '(c-basic-offset 4)
+ '(c-tab-always-indent t)
+ '(case-fold-search t)
+ '(cc-search-directories (quote ("." "/usr/include" "/usr/local/include/*" "../*")))
+ '(clean-buffer-list-delay-general 7)
+ '(cperl-continued-statement-offset 0)
+ '(current-language-environment "UTF-8")
+ '(default-input-method "rfc1345")
+ '(elpy-rpc-python-command "python3")
+ '(elpy-test-nose-runner-command (quote ("nosetests3")))
+ '(elpy-test-runner (quote elpy-test-nose-runner))
+ '(global-font-lock-mode t nil (font-lock))
+ '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
+ '(help-at-pt-timer-delay 0.9)
+ '(ido-default-buffer-method (quote selected-window))
+ '(ido-max-directory-size 90000)
+ '(ido-ubiquitous-mode t)
+ '(indent-tabs-mode nil)
+ '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
+ '(mf-display-padding-height 75)
+ '(mouse-wheel-follow-mouse t)
+ '(mouse-wheel-mode t nil (mwheel))
+ '(python-fill-docstring-style (quote django))
+ '(python-shell-interpreter "python3")
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(semantic-complete-inline-analyzer-displayor-class (quote semantic-displayor-ghost))
+ '(semantic-idle-scheduler-idle-time 0.25)
+ '(semanticdb-default-save-directory "~/.emacs-semanticdb")
+ '(sgml-basic-offset 4)
+ '(show-smartparens-global-mode t)
+ '(sp-show-pair-from-inside t)
+ '(tab-width 4)
+ '(warning-suppress-types (quote ((undo discard-info))))
+ '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
+ '(whitespace-style (quote (face tabs space-before-tab)))
+ '(window-combination-resize t)
+ '(window-numbering-auto-assign-0-to-minibuffer t)
+ '(x-select-enable-clipboard t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Inconsolata")))))
