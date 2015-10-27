@@ -886,6 +886,30 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
     )
   )
 
+(defun python-params-to-multiple-lines ()
+  ""
+  (interactive)
+  (save-excursion
+    (python-nav-end-of-statement)
+    (let ((end (point)))
+      (python-nav-beginning-of-statement)
+      (let ((beg (point)))
+        (replace-string ", " ",\n" nil beg end)
+        (python-nav-beginning-of-statement)
+        (search-forward "(")
+        (insert "\n")
+        (python-nav-end-of-statement)
+        (backward-char 1)
+        (insert "\n")
+        ))
+    (python-nav-end-of-statement)
+    (let ((end (point)))
+      (python-nav-beginning-of-statement)
+      (let ((beg (point)))
+        (indent-region beg end)
+        ))))
+
+(global-set-key (kbd "H-p") 'python-params-to-multiple-lines)
 ;; End let from the top
 )
 
