@@ -267,10 +267,6 @@
 		 ("H-t" . my-python-set-test-id)
 		 )
   )
-(use-package py-smart-operator
-  :ensure t
-  :init (add-hook 'python-mode-hook 'py-smart-operator-mode)
-)
 (use-package js3-mode
   :ensure t
   )
