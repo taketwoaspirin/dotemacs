@@ -324,9 +324,16 @@
 (global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
 ;; (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
 (global-set-key (kbd "C-(") 'delete-pair)
-(global-set-key (kbd "M-[") 'square-bracket-region)
-(global-set-key (kbd "M-{") 'bracket-region)
-(global-set-key (kbd "M-\"") 'quote-word-at-point)
+
+(global-set-key (kbd "(") 'my-magic-parentheses)
+(global-set-key (kbd ")") 'my-magic-parentheses)
+(global-set-key (kbd "[") 'my-magic-bracket)
+(global-set-key (kbd "]") 'my-magic-bracket)
+(global-set-key (kbd "{") 'my-magic-braces)
+(global-set-key (kbd "}") 'my-magic-braces)
+(global-set-key (kbd "\"") 'my-magic-double-quote)
+(global-set-key (kbd "'") 'my-magic-quote)
+
 (global-set-key (kbd "M-j")
             (lambda ()
                   (interactive)
@@ -415,23 +422,42 @@
 	)
 )
 
-(defun parenthesize-region (start end)
+(defun insert-char-maybe-around-region (left right)
+  (if (not (region-active-p))
+      (self-insert-command 1)
+    (bracket-region-with-parens (region-beginning) (region-end) left right)
+    )
+  )
+
+(defun my-magic-quote ()
+  (interactive)
+  (insert-char-maybe-around-region "'" "'")
+)
+
+(defun my-magic-double-quote ()
+  (interactive)
+  (insert-char-maybe-around-region "\"" "\"")
+)
+
+
+(defun my-magic-parentheses ()
   "Put parentheses around the current region."
-  (interactive "r")
-  (bracket-region-with-parens start end "(" ")")
+  (interactive)
+  (insert-char-maybe-around-region  "(" ")")
 )
 
-(defun bracket-region (start end)
+(defun my-magic-braces ()
   "Put braces around the current region."
-  (interactive "r")
-  (bracket-region-with-parens start end "{" "}")
+  (interactive)
+  (insert-char-maybe-around-region "{" "}")
 )
 
-(defun square-bracket-region (start end)
+(defun my-magic-bracket ()
   "Put braces around the current region."
-  (interactive "r")
-  (bracket-region-with-parens start end "[" "]")
+  (interactive)
+  (insert-char-maybe-around-region "[" "]")
 )
+
 
 (defun isearch-set-initial-string ()
   (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
