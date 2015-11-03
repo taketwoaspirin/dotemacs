@@ -174,24 +174,10 @@
 (use-package web-mode
   :ensure t
   )
-(use-package phi-rectangle
-  :ensure t
-  :bind (
-		 ;; ("C-w" . phi-rectangle-kill-region)
-		 ;; ("M-w" . phi-rectangle-kill-ring-save)
-		 ;; ("C-y" . phi-rectangle-yank)
-		 ("C-S-SPC" . phi-rectangle-set-mark-command)
-		 )
-  )
 (use-package whole-line-or-region
   :ensure t
   :init (whole-line-or-region-mode 1)
 )
-;; (use-package paren
-;;   :ensure t
-;;   :config (setq show-paren-style 'parenthesis)
-;;   :init (show-paren-mode 1)
-;;   )
 (use-package thingatpt
   :ensure t
   )
@@ -204,10 +190,6 @@
 (use-package pos-tip
   :ensure t
   )
-;; (use-package window-numbering
-;;   :ensure t
-;;   :init (window-numbering-mode 1)
-;;   )
 (use-package which-func
   :ensure t
   :config (setq which-func-modes t)
@@ -317,12 +299,10 @@
 (global-set-key (kbd "C-c r") 'my-revert-buffer-without-asking) 
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
 (global-set-key (kbd "M-]") 'next-error)
-(global-set-key (kbd "H-s") 'load-specfile)
 (global-set-key (kbd "H-b") 'load-makefile)
 (global-set-key (kbd "M-;") 'comment-dwim)
 (global-set-key (kbd "C-;") 'my-comment-line-dwim)
 (global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
-;; (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
 (global-set-key (kbd "C-(") 'delete-pair)
 
 (global-set-key (kbd "(") 'my-magic-parentheses)
@@ -338,9 +318,6 @@
             (lambda ()
                   (interactive)
                   (join-line -1)))
-(global-set-key (kbd "H-o") (lambda () (interactive)   (if (null minimap-bufname)
-      (minimap-create)
-    (minimap-kill))))
 
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 (global-set-key (kbd "H-u") 'my-underline-line)
@@ -585,12 +562,6 @@
   (if arg
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
-
-
-(defun load-specfile ()
-  (interactive)
-  (find-file "specfile.in")
-)
 
 (defun my-jump-to-imports (&optional arg)
   (interactive "P")
