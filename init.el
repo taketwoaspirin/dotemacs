@@ -296,6 +296,7 @@
 (global-set-key (kbd "M-n") 'scroll-forward-one-line)
 (global-set-key (kbd "M-p") 'scroll-backward-one-line)
 (global-set-key (kbd "C-j") 'my-jump-to-char)
+(global-set-key (kbd "C-o") 'my-smart-open-line)
 (global-set-key (kbd "C-x r v") 'list-registers)
 (global-set-key (kbd "C-c r") 'my-revert-buffer-without-asking) 
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
@@ -871,16 +872,15 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (put 'narrow-to-region 'disabled nil)
 
-(defun my-smart-open-line ()
+(defun my-smart-open-line (n)
   ""
-  (interactive)
-  (if (looking-back "^[[:blank:]]*")
+  (interactive "p")
+  (if (looking-back "^\s*")
       (progn
-        (message "looking at whitespace")
         (beginning-of-line)
-        (open-line 1)
+        (open-line n)
         (indent-for-tab-command))
-    (open-line 1)
+    (open-line n)
     )
   )
 
