@@ -247,7 +247,8 @@
          ("H-i" . my-jump-to-imports)
 		 ("H-d" . my-jump-to-doc-string)
 		 ("H-t" . my-python-set-test-id)
-		 )
+         ("H-p" . python-params-to-multiple-lines)
+         )
   )
 (use-package js3-mode
   :ensure t
@@ -906,7 +907,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
         (indent-region beg end)
         ))))
 
-(global-set-key (kbd "H-p") 'python-params-to-multiple-lines)
 ;; End let from the top
 )
 
