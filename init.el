@@ -235,19 +235,22 @@
   :ensure t
   :bind ("M-SPC" . shrink-whitespace)
   )
+(use-package multi-line
+  :ensure t
+  :bind ("H-p" . multi-line)
+)
 (use-package elpy
   :ensure t
   :init (progn
 		  (elpy-enable)
-		  ;; TODO this isn't right, it wants to be in python-mode-hook so it's buffer-local
-		  (whitespace-mode 1)
+          (global-whitespace-mode 1)
 		  )
   :mode (".in" . python-mode)
   :bind (
          ("H-i" . my-jump-to-imports)
 		 ("H-d" . my-jump-to-doc-string)
 		 ("H-t" . my-python-set-test-id)
-         ("H-p" . python-params-to-multiple-lines)
+         ;; ("H-p" . python-params-to-multiple-lines)
          )
   )
 (use-package js3-mode
@@ -265,6 +268,26 @@
 (use-package stickyfunc-enhance
   :ensure t
 )
+(use-package markdown-mode
+  :init (progn
+          (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+          (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+          )
+  )
+
+(use-package string-edit
+  :ensure t
+  :bind (
+         ("H-e" . string-edit-at-point)
+         )
+  )
+(use-package general-close
+  :ensure t
+  :bind (
+         (")" . general-close)
+         (";" . general-close)
+         )
+  )
 
 
 (setq visible-bell t)
