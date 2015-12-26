@@ -870,15 +870,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   (interactive "p")
   (increment-integer-at-point (- (or dec 1))))
 
-
-(defun insert-python-current-defun ()
-  ""
-  (interactive)
-  (open-line 1)
-  (indent-for-tab-command)
-  (insert "self.err_test_id = \"Failure: " (car (last (split-string (python-info-current-defun) "\\."))) "\"")
-)
-
 (defun my-python-set-test-id ()
   ""
   (interactive)
@@ -896,21 +887,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
       (indent-for-tab-command)
 
       (goto-char 1)
-      (if (search-forward "self.err_test_id = " nil t)
-		  (progn
-			(kill-whole-line)
-			(insert-python-current-defun)
-			)
-		(forward-line)
-		(if (looking-at "\\s-*\"\"\"")
-			(progn 
-			  (forward-line 1)
-			  (search-forward "\"\"\"" nil t)
-			  (forward-line 1)
-			  )
-		  )
-		(insert-python-current-defun)
-	))))
+      )))
 )
 
 (put 'narrow-to-region 'disabled nil)
