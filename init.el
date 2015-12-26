@@ -3,6 +3,10 @@
 ;; TODO
 ;; Document external packages needed
 
+;; -- Web certificate checking
+;; sudo apt-get install gnutls-bin
+;; pip install --user certifi
+
 ;; -- jsonlint --
 ;; sudo apt-get install npm nodejs
 ;; sudo npm install jsonlint -g
@@ -30,6 +34,22 @@
 (setq inhibit-startup-screen t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; https certificate handling, from
+;; https://glyph.twistedmatrix.com/2015/11/editor-malware.html
+
+(let ((trustfile
+       (replace-regexp-in-string
+        "\\\\" "/"
+        (replace-regexp-in-string
+         "\n" ""
+         (shell-command-to-string "python -m certifi")))))
+  (setq tls-program
+        (list
+         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+                 (if (eq window-system 'w32) ".exe" "") trustfile)))
+  (setq gnutls-verify-error t)
+  (setq gnutls-trustfiles (list trustfile)))
 
 ; Package archives
 
@@ -964,6 +984,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
+ '(package-archives (quote (("marmalade" . "https://marmalade-repo.org/packages/") ("elpy" . "https://jorgenschaefer.github.io/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("melpa" . "https://melpa.milkbox.net/packages/"))))
  '(python-fill-docstring-style (quote django))
  '(python-shell-interpreter "python3")
  '(safe-local-variable-values (quote ((encoding . utf-8))))
@@ -974,6 +995,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(show-smartparens-global-mode t)
  '(sp-show-pair-from-inside t)
  '(tab-width 4)
+ '(tls-checktrust t)
  '(warning-suppress-types (quote ((undo discard-info))))
  '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
  '(whitespace-style (quote (face tabs space-before-tab)))
