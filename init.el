@@ -301,14 +301,6 @@
          ("H-e" . string-edit-at-point)
          )
   )
-(use-package general-close
-  :ensure t
-  :bind (
-         (")" . general-close)
-         (";" . general-close)
-         )
-  )
-
 
 (setq visible-bell t)
 (setq-default truncate-lines t)
