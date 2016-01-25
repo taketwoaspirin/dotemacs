@@ -289,6 +289,7 @@
   :ensure t
 )
 (use-package markdown-mode
+  :ensure t
   :init (progn
           (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
           (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
