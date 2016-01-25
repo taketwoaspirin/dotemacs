@@ -182,6 +182,10 @@
 ;; (use-package git-lens
 ;;   :ensure t
 ;;   )
+(use-package git-gutter-fringe
+  :ensure t
+  :init (global-git-gutter-mode t)
+)
 (use-package gitconfig-mode
   :ensure t
   )
