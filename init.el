@@ -302,6 +302,12 @@
          )
   )
 
+(use-package comment-dwim-2
+  :ensure t
+  ;; :init (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
+  :bind (("C-;" . comment-dwim-2))
+  )
+
 (setq visible-bell t)
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
@@ -337,9 +343,9 @@
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
 (global-set-key (kbd "M-]") 'next-error)
 (global-set-key (kbd "H-b") 'load-makefile)
-(global-set-key (kbd "M-;") 'comment-dwim)
-(global-set-key (kbd "C-;") 'my-comment-line-dwim)
-(global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
+;; (global-set-key (kbd "M-;") 'comment-dwim)
+;; (global-set-key (kbd "C-;") 'my-comment-line-dwim)
+;; (global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
 (global-set-key (kbd "C-(") 'delete-pair)
 
 (global-set-key (kbd "(") 'my-magic-parentheses)
