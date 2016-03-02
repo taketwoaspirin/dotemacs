@@ -116,6 +116,11 @@
 (use-package ido-ubiquitous
   :ensure t
 )
+
+(use-package visual-regexp-steroids
+  :ensure t
+  )
+
 (use-package visual-regexp
   :ensure t
   :bind (
@@ -123,9 +128,7 @@
 		 ("M-C-%" . vr/query-replace)
 		 )
   )
-(use-package visual-regexp-steroids
-  :ensure t
-  )
+
 (use-package multiple-cursors
   :ensure t
   :bind (
@@ -311,6 +314,19 @@
   :ensure t
   ;; :init (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
   :bind (("C-;" . comment-dwim-2))
+  )
+
+(use-package zygospore
+  :ensure t
+  :bind (("C-x 1" . zygospore-toggle-delete-other-windows))
+)
+
+(use-package loccur
+  :ensure t
+  :bind (("H-o" . loccur-current)
+         ("H-S-o" . loccur-previous-match)
+         ("C-H-o" . loccur)
+         )
   )
 
 (setq visible-bell t)
