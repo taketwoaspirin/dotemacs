@@ -275,8 +275,9 @@
   :mode (".in" . python-mode)
   :bind (
          ("H-i" . my-jump-to-imports)
-		 ("H-d" . my-jump-to-doc-string)
-		 ("H-t" . my-python-set-test-id)
+         ("H-d" . my-jump-to-doc-string)
+         ("H-t" . my-python-set-test-id)
+         ("H-b" . my-add-nose-breakpoint-line)
          ;; ("H-p" . python-params-to-multiple-lines)
          )
   )
@@ -363,7 +364,6 @@
 (global-set-key (kbd "C-c r") 'my-revert-buffer-without-asking) 
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
 (global-set-key (kbd "M-]") 'next-error)
-(global-set-key (kbd "H-b") 'load-makefile)
 ;; (global-set-key (kbd "M-;") 'comment-dwim)
 ;; (global-set-key (kbd "C-;") 'my-comment-line-dwim)
 ;; (global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
@@ -920,6 +920,17 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
         (open-line n)
         (indent-for-tab-command))
     (open-line n)
+    )
+  )
+
+(defun my-add-nose-breakpoint-line()
+  "Add a nose breakpoint line just before the current line"
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (indent-for-tab-command)
+    (insert "from nose.tools import set_trace; set_trace()\n")
+    (indent-for-tab-command)
     )
   )
 
