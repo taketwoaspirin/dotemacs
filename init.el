@@ -333,6 +333,11 @@
 (use-package dockerfile-mode
   :ensure t
   )
+(use-package mode-icons
+  :ensure t
+  :init (mode-icons-mode)
+)
+
 (setq visible-bell t)
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
