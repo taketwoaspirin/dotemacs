@@ -395,7 +395,7 @@
 (global-set-key (kbd "C-=") 'increment-integer-at-point)
 (global-set-key (kbd "C--") 'decrement-integer-at-point)
 (global-set-key (kbd "H-f") 'recentf-open-files)
-
+(global-set-key (kbd "H-c") 'copyright-update)
 
 (defun specfile-insert-specfile-changelog-entry ()
   (interactive)
