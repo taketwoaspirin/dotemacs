@@ -330,6 +330,9 @@
          )
   )
 
+(use-package dockerfile-mode
+  :ensure t
+  )
 (setq visible-bell t)
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
