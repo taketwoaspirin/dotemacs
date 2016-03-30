@@ -333,6 +333,12 @@
 (use-package dockerfile-mode
   :ensure t
   )
+;; (use-package docker
+;;   :ensure t
+;; )
+;; (use-package docker-tramp
+;;   :ensure t
+;; )
 (use-package mode-icons
   :ensure t
   :init (mode-icons-mode)
