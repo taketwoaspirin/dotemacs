@@ -162,6 +162,7 @@
 (use-package magit
   :ensure t
   :bind ("H-g" . magit-status)
+  :init (setq magit-last-seen-setup-instructions "1.4.0")
   )
 ;; (use-package magit-gh-pulls
 ;;   :ensure t
