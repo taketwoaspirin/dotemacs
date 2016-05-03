@@ -1024,6 +1024,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(ido-max-directory-size 90000)
  '(ido-ubiquitous-mode t)
  '(indent-tabs-mode nil)
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
