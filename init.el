@@ -410,7 +410,7 @@
 (global-set-key (kbd "C-=") 'increment-integer-at-point)
 (global-set-key (kbd "C--") 'decrement-integer-at-point)
 (global-set-key (kbd "H-f") 'recentf-open-files)
-(global-set-key (kbd "H-c") 'copyright-update)
+(global-set-key (kbd "H-c") 'dyn-copyright)
 
 (defun specfile-insert-specfile-changelog-entry ()
   (interactive)
@@ -971,6 +971,27 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
       (let ((beg (point)))
         (indent-region beg end)
         ))))
+
+(defun replace-copyright ()
+  (let ((current-prefix-arg 1))
+    (call-interactively 'copyright-update)
+))
+
+(defun dyn-copyright ()
+  ""
+  (interactive)
+  (save-excursion
+    (if (not (copyright-find-copyright))
+        (progn
+          (goto-char (point-min))
+          (insert "#\n# Copyright 1998 Dynamic Network Services, Inc.\n#\n\n")
+          (goto-char (point-min))
+          )
+      )
+    (replace-copyright)
+    )
+)
+
 
 ;; End let from the top
 )
