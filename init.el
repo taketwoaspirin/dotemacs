@@ -265,7 +265,7 @@
   )
 (use-package multi-line
   :ensure t
-  :bind ("H-p" . multi-line)
+  :bind ("H-a" . multi-line)
 )
 (use-package elpy
   :ensure t
@@ -279,6 +279,8 @@
          ("H-d" . my-jump-to-doc-string)
          ("H-t" . my-python-set-test-id)
          ("H-b" . my-add-nose-breakpoint-line)
+         ("H-n" . python-nav-forward-statement)
+         ("H-p" . python-nav-backward-statement)
          ;; ("H-p" . python-params-to-multiple-lines)
          )
   )
@@ -648,14 +650,13 @@
   (goto-char 1)
   (if (search-forward "import " nil t)
 	  (progn (move-beginning-of-line 1)
-			 (while (or (looking-at "import ") (looking-at "from .* import"))
-			   (move-beginning-of-line 2))
+             (while (or (looking-at "import ") (looking-at "from .* import") (looking-at "$"))
+               (python-nav-forward-statement))
 			 (forward-line -1)
-			 (move-end-of-line 1)
-			 (if arg (insert "\nimport ")))
+             (if arg (insert "\nimport ")))
 			 
 	(forward-line)
-	(while (not (looking-at "\n"))
+    (while (not (looking-at "$"))
 	  (forward-line))
 	(insert "\nimport "))
   )
