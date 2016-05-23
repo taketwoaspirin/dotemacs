@@ -347,6 +347,11 @@
   :init (mode-icons-mode)
 )
 
+(use-package volatile-highlights
+  :ensure t
+  :config (volatile-highlights-mode t)
+  )
+
 (setq visible-bell t)
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
