@@ -342,10 +342,10 @@
 ;; (use-package docker-tramp
 ;;   :ensure t
 ;; )
-(use-package mode-icons
-  :ensure t
-  :init (mode-icons-mode)
-)
+;; (use-package mode-icons
+;;   :ensure t
+;;   :init (mode-icons-mode)
+;; )
 
 (use-package volatile-highlights
   :ensure t
