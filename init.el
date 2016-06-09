@@ -352,6 +352,12 @@
   :config (volatile-highlights-mode t)
   )
 
+(use-package vlf
+  :ensure t
+  :config (require 'vlf-setup)
+  )
+
+
 (setq visible-bell t)
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
@@ -1031,6 +1037,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(indent-tabs-mode nil)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(jde-jdk-registry (quote (("1.6.0" . "/usr/lib/jvm/java-6-sun"))))
+ '(large-file-warning-threshold 50000000)
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
