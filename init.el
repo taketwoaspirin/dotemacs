@@ -1025,6 +1025,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(cperl-continued-statement-offset 0)
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
+ '(elpy-modules (quote (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults)))
+ '(elpy-rpc-backend "jedi")
  '(elpy-rpc-python-command "python3")
  '(elpy-test-nose-runner-command (quote ("nosetests3")))
  '(elpy-test-runner (quote elpy-test-nose-runner))
