@@ -189,6 +189,10 @@
 (use-package git-gutter-fringe
   :ensure t
   :init (global-git-gutter-mode t)
+  :bind (
+         ("C-H-n" . git-gutter:next-hunk)
+         ("C-H-p" . git-gutter:previous-hunk)
+         )
 )
 (use-package gitconfig-mode
   :ensure t
