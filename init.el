@@ -38,18 +38,18 @@
 ;; https certificate handling, from
 ;; https://glyph.twistedmatrix.com/2015/11/editor-malware.html
 
-(let ((trustfile
-       (replace-regexp-in-string
-        "\\\\" "/"
-        (replace-regexp-in-string
-         "\n" ""
-         (shell-command-to-string "python -m certifi")))))
-  (setq tls-program
-        (list
-         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
-                 (if (eq window-system 'w32) ".exe" "") trustfile)))
-  (setq gnutls-verify-error t)
-  (setq gnutls-trustfiles (list trustfile)))
+;; (let ((trustfile
+;;        (replace-regexp-in-string
+;;         "\\\\" "/"
+;;         (replace-regexp-in-string
+;;          "\n" ""
+;;          (shell-command-to-string "python -m certifi")))))
+;;   (setq tls-program
+;;         (list
+;;          (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+;;                  (if (eq window-system 'w32) ".exe" "") trustfile)))
+;;   (setq gnutls-verify-error t)
+;;   (setq gnutls-trustfiles (list trustfile)))
 
 ; Package archives
 
@@ -357,6 +357,7 @@
   :config (require 'vlf-setup)
   )
 
+(require 'copyright)
 
 (setq visible-bell t)
 (setq-default truncate-lines t)
@@ -366,7 +367,7 @@
 ; miscellaneous behavior tweaks
 
 (auto-compression-mode 1)
-(toggle-uniquify-buffer-names)
+;; (toggle-uniquify-buffer-names)
 (transient-mark-mode t)
 (blink-cursor-mode -1)
 (defvar isearch-initial-string nil)
