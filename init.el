@@ -164,13 +164,13 @@
   :bind ("H-g" . magit-status)
   :init (setq magit-last-seen-setup-instructions "1.4.0")
   )
-;; (use-package magit-gh-pulls
-;;   :ensure t
-;;   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
-;; )
-;; (use-package magit-filenotify
-;;   :ensure t
-;; )
+(use-package magit-gh-pulls
+  :ensure t
+  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+)
+(use-package magit-filenotify
+  :ensure t
+)
 ;; (use-package magit-tramp
 ;;   :ensure t
 ;; )
@@ -192,6 +192,8 @@
   :bind (
          ("C-H-n" . git-gutter:next-hunk)
          ("C-H-p" . git-gutter:previous-hunk)
+         ("<left-fringe><mouse-5>" . git-gutter:next-hunk)
+         ("<left-fringe><mouse-4>" . git-gutter:previous-hunk)
          )
 )
 (use-package gitconfig-mode
@@ -361,6 +363,11 @@
   :config (require 'vlf-setup)
   )
 
+(use-package string-inflection
+  :ensure t
+  :bind (("H-k" . string-inflection-cycle))
+  )
+
 (require 'copyright)
 
 (setq visible-bell t)
@@ -397,6 +404,7 @@
 (global-set-key (kbd "C-c r") 'my-revert-buffer-without-asking) 
 (global-set-key (kbd "C-c C-r") 'sudo-edit-current-file)
 (global-set-key (kbd "M-]") 'next-error)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 ;; (global-set-key (kbd "M-;") 'comment-dwim)
 ;; (global-set-key (kbd "C-;") 'my-comment-line-dwim)
 ;; (global-set-key (kbd "C-:") 'my-comment-line-dwim-next-line)
@@ -1024,6 +1032,42 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
                 #'endless/fill-or-unfill)
 
 
+;; These next 3 functions are included in emacs 25+
+;;; Functions for changing capitalization that Do What I Mean
+(defun upcase-dwim (arg)
+  "Upcase words in the region, if active.  If not, upcase word at point.
+If the region is active, this function calls `upcase-region'.
+Otherwise, it calls `upcase-word', with prefix argument passed to it
+to upcase ARG words."
+  (interactive "*p")
+  (if (use-region-p)
+      (upcase-region (region-beginning) (region-end))
+    (upcase-word arg)))
+
+(defun downcase-dwim (arg)
+    "Downcase words in the region, if active.  If not, downcase word at point.
+If the region is active, this function calls `downcase-region'.
+Otherwise, it calls `downcase-word', with prefix argument passed to it
+to downcase ARG words."
+  (interactive "*p")
+  (if (use-region-p)
+      (downcase-region (region-beginning) (region-end))
+    (downcase-word arg)))
+
+(defun capitalize-dwim (arg)
+  "Capitalize words in the region, if active.  If not, capitalize word at point.
+If the region is active, this function calls `capitalize-region'.
+Otherwise, it calls `capitalize-word', with prefix argument passed to it
+to capitalize ARG words."
+  (interactive "*p")
+  (if (use-region-p)
+      (capitalize-region (region-beginning) (region-end))
+    (capitalize-word arg)))
+
+(global-set-key (kbd "M-u") 'upcase-dwim)
+(global-set-key (kbd "M-l") 'downcase-dwim)
+(global-set-key (kbd "M-c") 'capitalize-dwim)
+
 ;; End let from the top
 )
 
@@ -1086,3 +1130,4 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Inconsolata")))))
+
