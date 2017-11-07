@@ -5,7 +5,7 @@
 
 ;; -- Web certificate checking
 ;; sudo apt-get install gnutls-bin
-;; pip install --user certifi
+;; pip3 install --user certifi
 
 ;; -- jsonlint --
 ;; sudo apt-get install npm nodejs
@@ -54,12 +54,6 @@
 ; Package archives
 
 (require 'package)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-(add-to-list 'package-archives 
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (package-initialize)
 
@@ -113,7 +107,7 @@
 			(setq ido-rescan t))
 		  )
   )
-(use-package ido-ubiquitous
+(use-package ido-completing-read+
   :ensure t
 )
 
@@ -171,9 +165,9 @@
 (use-package magit-filenotify
   :ensure t
 )
-;; (use-package magit-tramp
-;;   :ensure t
-;; )
+(use-package magit-tramp
+  :ensure t
+)
 ;; (use-package magit-simple-keys
 ;;   :ensure t
 ;; )
@@ -183,9 +177,9 @@
          ("C-H-G" . git-timemachine)
          )
   )
-;; (use-package git-lens
-;;   :ensure t
-;;   )
+(use-package git-lens
+  :ensure t
+  )
 (use-package git-gutter-fringe
   :ensure t
   :init (global-git-gutter-mode t)
@@ -256,6 +250,9 @@
 (use-package json-mode
   :ensure t
 )
+(use-package angular-mode
+  :ensure t
+  )
 (use-package flymake-json
   :ensure t
   :init (add-hook 'json-mode-hook 'flymake-json-load)
@@ -374,6 +371,7 @@
 (setq-default truncate-lines t)
 (setq comment-auto-fill-only-comments t)
 (setq scroll-error-top-bottom 'true)
+(setq x-stretch-cursor t)
 
 ; miscellaneous behavior tweaks
 
@@ -472,7 +470,7 @@
 	(goto-char newentrylocation)
 	(insert "* ")
 	(insert (format-time-string "%a %b %d %Y"))
-	(insert " Stephen Ryan <sryan@renesys.com>\n")
+    (insert " Stephen Ryan <stephen.r.ryan@oracle.com>\n")
 	(insert versionstr)
 	(insert "\n  \n\n")
 	(backward-char 2)
@@ -703,10 +701,13 @@
     (insert "\"\"\"\n\n")
     (indent-for-tab-command)
     (insert "\"\"\"\n")
-	(indent-for-tab-command)
+    (if (not (looking-at "[[:space:]]*$"))
+        (indent-for-tab-command)
+      )
     (forward-line -2)
-	(back-to-indentation)
-    (indent-for-tab-command)))
+    (back-to-indentation)
+    (call-interactively 'my-python-set-test-id)
+    ))
 
 (defun goto-line-with-feedback ()
   "Show line numbers temporarily, while prompting for the line number input"
@@ -937,7 +938,9 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 	  (narrow-to-defun)
       (let ((current-class (first (split-string (python-info-current-defun) "\\."))))
       (my-jump-to-doc-string)
-      (forward-char 1)
+      (if (not (looking-at "[[:space:]]*$"))
+          (forward-char 1)
+        (delete-forward-char 1))
       (back-to-indentation)
       (if (looking-at current-class)
           (kill-whole-line))
@@ -1009,7 +1012,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
     (if (not (copyright-find-copyright))
         (progn
           (goto-char (point-min))
-          (insert "#\n# Copyright 1998 Dynamic Network Services, Inc.\n#\n\n")
+          (insert "#\n# Copyright (C) 1998 Oracle and/or its affiliates. All rights reserved.\n#\n\n")
           (goto-char (point-min))
           )
       )
@@ -1088,7 +1091,9 @@ to capitalize ARG words."
  '(cperl-continued-statement-offset 0)
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
- '(elpy-modules (quote (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults)))
+ '(elpy-modules
+   (quote
+    (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults)))
  '(elpy-rpc-backend "jedi")
  '(elpy-rpc-python-command "python3")
  '(elpy-test-nose-runner-command (quote ("nosetests3")))
@@ -1106,10 +1111,19 @@ to capitalize ARG words."
  '(mf-display-padding-height 75)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
- '(package-archives (quote (("marmalade" . "https://marmalade-repo.org/packages/") ("elpy" . "https://jorgenschaefer.github.io/packages/") ("gnu" . "https://elpa.gnu.org/packages/") ("melpa" . "https://melpa.milkbox.net/packages/"))))
+ '(package-archives
+   (quote
+    (("marmalade" . "https://marmalade-repo.org/packages/")
+     ("elpy" . "https://jorgenschaefer.github.io/packages/")
+     ("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.milkbox.net/packages/"))))
+ '(package-selected-packages
+   (quote
+    (string-inflection vlf volatile-highlights dockerfile-mode loccur zygospore comment-dwim-2 string-edit markdown-mode stickyfunc-enhance js3-mode elpy multi-line shrink-whitespace ws-trim flymake-json json-mode wgrep-ag ag flycheck-pos-tip flycheck whole-line-or-region web-mode visual-regexp-steroids use-package undo-tree ssh-config-mode smart-newline rpm-spec-mode multiple-cursors minimap magit-gh-pulls magit-filenotify ido-ubiquitous gitignore-mode gitconfig-mode git-timemachine git-gutter-fringe fixme-mode expand-region auto-package-update)))
  '(python-fill-docstring-style (quote django))
  '(python-shell-interpreter "python3")
  '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(select-enable-clipboard t)
  '(semantic-complete-inline-analyzer-displayor-class (quote semantic-displayor-ghost))
  '(semantic-idle-scheduler-idle-time 0.25)
  '(semanticdb-default-save-directory "~/.emacs-semanticdb")
@@ -1122,8 +1136,7 @@ to capitalize ARG words."
  '(whitespace-global-modes (quote (makefile-gmake-mode\ python-mode)))
  '(whitespace-style (quote (face tabs space-before-tab)))
  '(window-combination-resize t)
- '(window-numbering-auto-assign-0-to-minibuffer t)
- '(x-select-enable-clipboard t))
+ '(window-numbering-auto-assign-0-to-minibuffer t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
